@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, Animated, Easing, Image } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useRouter } from 'expo-router';
 import { COLORS, FONT_SIZES, SPACING } from '../constants/theme';
 
-const SplashScreen = () => {
-  const navigation = useNavigation();
+export default function SplashScreen() {
+  const router = useRouter();
   const fadeAnim = new Animated.Value(0);
   const scaleAnim = new Animated.Value(0.9);
   const pulseAnim = new Animated.Value(1);
@@ -31,7 +31,7 @@ const SplashScreen = () => {
 
     // Navigate to Login screen after 4 seconds
     const timer = setTimeout(() => {
-      navigation.navigate('Login' as never);
+      router.replace('/login');
     }, 4000);
 
     return () => clearTimeout(timer);
@@ -132,5 +132,3 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 });
-
-export default SplashScreen;

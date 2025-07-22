@@ -9,15 +9,15 @@ import {
   Platform,
   ImageBackground,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useRouter } from 'expo-router';
 import { Feather } from '@expo/vector-icons';
 import { COLORS, FONT_SIZES, SPACING, BORDER_RADIUS, SHADOWS } from '../constants/theme';
 import Button from '../components/Button';
 import TextInput from '../components/TextInput';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-const SignUpScreen = () => {
-  const navigation = useNavigation();
+export default function SignUpScreen() {
+  const router = useRouter();
   const [name, setName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
@@ -54,12 +54,12 @@ const SignUpScreen = () => {
     setTimeout(() => {
       setIsLoading(false);
       // Navigate to home screen after successful sign up
-      navigation.navigate('Home' as never);
+      router.replace('/(tabs)');
     }, 1500);
   };
 
   const handleLogin = () => {
-    navigation.navigate('Login' as never);
+    router.back();
   };
 
   // Generate a background pattern URL using the Image Generation API
@@ -84,7 +84,7 @@ const SignUpScreen = () => {
             <View style={styles.container}>
               <TouchableOpacity 
                 style={styles.backButton}
-                onPress={() => navigation.goBack()}
+                onPress={() => router.back()}
               >
                 <Feather name="arrow-left" size={24} color={COLORS.text} />
               </TouchableOpacity>
@@ -229,5 +229,3 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
 });
-
-export default SignUpScreen;
