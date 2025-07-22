@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "A0 Project",
-    "slug": "a0-project",
+    "name": "Seizure Tracker",
+    "slug": "seizure-tracker",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -25,11 +25,17 @@
     },
     "web": {
       "favicon": "./assets/favicon.png",
-      "bundler": "metro"
+      "bundler": "metro",
+      "output": "single"
     },
     "plugins": [
-      "expo-router"
+      [
+        "expo-router",
+        {
+          "root": "./app"
+        }
+      ]
     ],
-    "scheme": "a0-project"
+    "scheme": "seizure-tracker"
   }
 }
