@@ -3,6 +3,7 @@
     "name": "Seizure Tracker",
     "slug": "seizure-tracker-app",
     "version": "1.0.0",
+    "sdkVersion": "53.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -16,7 +17,12 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.seizuretracker.app"
+      "bundleIdentifier": "com.seizuretracker.app",
+      "infoPlist": {
+        "NSCameraUsageDescription": "This app uses the camera to record seizure episodes for medical documentation.",
+        "NSMicrophoneUsageDescription": "This app uses the microphone to record audio during seizure episodes.",
+        "NSPhotoLibraryUsageDescription": "This app accesses your photo library to attach videos to seizure diary entries."
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -28,7 +34,9 @@
         "android.permission.CAMERA",
         "android.permission.RECORD_AUDIO",
         "android.permission.ACCESS_MEDIA_LOCATION",
-        "android.permission.CALL_PHONE"
+        "android.permission.CALL_PHONE",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE"
       ]
     },
     "web": {
@@ -36,7 +44,14 @@
       "bundler": "metro"
     },
     "plugins": [
-      "expo-image-picker"
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "The app accesses your photos to attach images to seizure diary entries.",
+          "cameraPermission": "The app accesses your camera to record seizure episodes.",
+          "videosPermission": "The app accesses your videos to attach them to seizure diary entries."
+        }
+      ]
     ]
   }
 }
